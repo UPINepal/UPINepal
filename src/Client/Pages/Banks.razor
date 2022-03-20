@@ -1,0 +1,51 @@
+﻿@page "/banks"
+@using Server.Models
+<PageTitle>Banks Supporting UPI</PageTitle>
+
+
+<h1>Banks On UPI</h1>
+
+<RadzenDataGrid  Data="@apps"  PagerHorizontalAlign="HorizontalAlign.Center" TItem="BankResponse" ColumnWidth="200px">
+    <Columns>
+        <RadzenDataGridColumn TItem="BankResponse" Property="Name" Filterable="false" Title="Name"  />
+        <RadzenDataGridColumn TItem="BankResponse" Title="Logo" Frozen="true" Sortable="false"  Width="60px">
+            <Template Context="data">
+                <RadzenImage Path="@data.LogoLink" style="width: 40px; height: 40px; border-radius: 8px;"/>
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="BankResponse" Property="SiteLink" Title="SiteLink" Frozen="true" Width="140px"/>
+        <RadzenDataGridColumn TItem="BankResponse" Property="UpIPageLink" Title="UpIPageLink" Width="140px"/>
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    IEnumerable<BankResponse> apps;
+
+    protected override async Task OnInitializedAsync()
+    {
+        apps = new List<BankResponse>()
+        {
+            new BankResponse()
+            {
+                Name = "Khalti",
+                SiteLink = "https://khalti.com/",
+                UpIPageLink = "https://khalti.com/",
+                LogoLink = "https://dao578ztqooau.cloudfront.net/static/2.69.07-web19/images/merchants/thirdparty/classictech.png"
+            },
+            new BankResponse()
+            {
+                Name = "Khalti",
+                SiteLink = "https://khalti.com/",
+                UpIPageLink = "https://khalti.com/",
+                LogoLink = "https://dao578ztqooau.cloudfront.net/static/2.69.07-web19/images/merchants/thirdparty/classictech.png",
+            },
+            new BankResponse()
+            {
+                Name = "Khalti",
+                SiteLink = "https://khalti.com/",
+                UpIPageLink = "https://khalti.com/",
+                LogoLink = "https://dao578ztqooau.cloudfront.net/static/2.69.07-web19/images/merchants/thirdparty/classictech.png"
+            }
+        };
+    }
+}

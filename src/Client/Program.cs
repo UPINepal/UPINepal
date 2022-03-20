@@ -5,8 +5,6 @@ using Shared;
 using Shared.Interfaces;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
-//builder.RootComponents.Add<App>("#app");
-//builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped<ThemeState>();
 builder.Services.AddScoped<IMenuService,MenuService>();

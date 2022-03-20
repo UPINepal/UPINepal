@@ -15,15 +15,15 @@ namespace Client.Implementations
             },
             new MenuClass()
             {
-                Name = "counter",
-                Path = "/counter",
-                Icon = "&#xe88a"
+                Name = "Apps",
+                Path = "/apps",
+                Icon = "shop"
             },
             new MenuClass()
             {
-                Name = "fetchdata",
-                Path = "/fetchdata",
-                Icon = "&#xe88a"
+                Name = "Banks",
+                Path = "/banks",
+                Icon = "account_balance"
             }
         };
 

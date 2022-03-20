@@ -1,0 +1,57 @@
+﻿@page "/apps"
+@using global::Shared.Models
+
+<PageTitle>Apps Supporting UPI</PageTitle>
+
+<h1>Apps On UPI</h1>
+
+<RadzenDataGrid  Data="@apps"  PagerHorizontalAlign="HorizontalAlign.Center" TItem="AppResponse" ColumnWidth="200px">
+    <Columns>
+        <RadzenDataGridColumn TItem="AppResponse" Property="Name" Filterable="false" Title="Name"  />
+        <RadzenDataGridColumn TItem="AppResponse" Title="Logo" Frozen="true" Sortable="false"  Width="60px">
+            <Template Context="data">
+                <RadzenImage Path="@data.LogoLink" style="width: 40px; height: 40px; border-radius: 8px;"/>
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn TItem="AppResponse" Property="AppStoreLink" Title="App Store" Frozen="true" Width="140px"/>
+        <RadzenDataGridColumn TItem="AppResponse" Property="PlayStoreLink" Title="Play Store" Width="140px"/>
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    IEnumerable<AppResponse> apps;
+
+    protected override async Task OnInitializedAsync()
+    {
+        apps = new List<AppResponse>()
+        {
+            new AppResponse()
+            {
+                Name = "Khalti",
+                SiteLink = "https://khalti.com/",
+                UpIPageLink = "https://khalti.com/",
+                LogoLink = "https://dao578ztqooau.cloudfront.net/static/2.69.07-web19/images/merchants/thirdparty/classictech.png",
+                PlayStoreLink = "https://play.google.com/store/apps/details?id=com.khalti",
+                AppStoreLink = "https://apps.apple.com/us/app/khalti-digital-wallet-nepal/id1263400741"
+            },
+            new AppResponse()
+            {
+                Name = "Khalti",
+                SiteLink = "https://khalti.com/",
+                UpIPageLink = "https://khalti.com/",
+                LogoLink = "https://dao578ztqooau.cloudfront.net/static/2.69.07-web19/images/merchants/thirdparty/classictech.png",
+                PlayStoreLink = "https://play.google.com/store/apps/details?id=com.khalti",
+                AppStoreLink = "https://apps.apple.com/us/app/khalti-digital-wallet-nepal/id1263400741"
+            },
+            new AppResponse()
+            {
+                Name = "Khalti",
+                SiteLink = "https://khalti.com/",
+                UpIPageLink = "https://khalti.com/",
+                LogoLink = "https://dao578ztqooau.cloudfront.net/static/2.69.07-web19/images/merchants/thirdparty/classictech.png",
+                PlayStoreLink = "https://play.google.com/store/apps/details?id=com.khalti",
+                AppStoreLink = "https://apps.apple.com/us/app/khalti-digital-wallet-nepal/id1263400741"
+            }
+        };
+    }
+}

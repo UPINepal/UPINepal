@@ -20,7 +20,7 @@ builder.Services.AddScoped<HttpClient>(s =>
 
 
 builder.Services.AddScoped<ThemeState>();
-builder.Services.AddScoped<IMenuService,MenuService>();
+builder.Services.AddScoped<IMenuService, MenuService>();
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();

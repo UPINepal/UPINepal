@@ -25,9 +25,6 @@
                 <RadzenLabel Text="@(projectName)">
                 </RadzenLabel>
             </div>
-            <div class="col-7 d-flex align-items-center justify-content-end">
-                <RadzenDropDown class="mx-0 mx-lg-3" TValue="string" TextProperty="Text" ValueProperty="Value" Data="@themes" Value="@_themeState.CurrentTheme" Change="@ChangeTheme" />
-            </div>
         </div>
     </ChildContent>
 </RadzenHeader>
@@ -39,12 +36,6 @@
                     <div class="row">
                         <div class="col-12 pt-4 pb-5 px-3 px-lg-5">
                             @Body
-                            <p class="mt-5 md-3 text-center">
-                                <RadzenLabel Text=@($"{@DateTime.Now.Year} {projectName} Inc.")></RadzenLabel>
-                            </p>
-                            <p class="text-center">
-                                <Social />
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -54,9 +45,6 @@
 </div>
 <RadzenSidebar @ref="@sidebar0" @bind-Expanded="@sidebarExpanded">
     <ChildContent>
-        <div style="padding: 1rem">
-            <RadzenTextBox Placeholder="Find component ..." type="search" @oninput="@FilterPanelMenu" style="width: 100%" />
-        </div>
         <RadzenPanelMenu>
             @foreach (var category in examples)
             {
@@ -69,11 +57,11 @@
 
 @code {
 
-    string projectName = "Project Name";
+    string projectName = "List of UPI Apps & Banks In Nepal";
     RadzenSidebar sidebar0;
     RadzenBody body0;
-    bool sidebarExpanded = true;
-    bool bodyExpanded = false;
+    bool sidebarExpanded = false;
+    bool bodyExpanded = true;
 
     dynamic themes = new[]
         {
