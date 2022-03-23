@@ -5,10 +5,10 @@
 
 <h1>Apps On UPI</h1>
 
-<RadzenDataGrid  Data="@apps"  PagerHorizontalAlign="HorizontalAlign.Center" TItem="AppResponse" ColumnWidth="200px">
+<RadzenDataGrid Data="@apps" PagerHorizontalAlign="HorizontalAlign.Center" TItem="AppResponse" ColumnWidth="200px">
     <Columns>
-        <RadzenDataGridColumn TItem="AppResponse" Property="Name" Filterable="false" Title="Name"  />
-        <RadzenDataGridColumn TItem="AppResponse" Title="Logo" Frozen="true" Sortable="false"  Width="60px">
+        <RadzenDataGridColumn TItem="AppResponse" Property="Name" Filterable="false" Title="Name"/>
+        <RadzenDataGridColumn TItem="AppResponse" Title="Logo" Frozen="true" Sortable="false" Width="60px">
             <Template Context="data">
                 <RadzenImage Path="@data.LogoLink" style="width: 40px; height: 40px; border-radius: 8px;"/>
             </Template>
@@ -54,4 +54,5 @@
             }
         };
     }
+
 }
