@@ -7,7 +7,7 @@
 @inject NavigationManager _uriHelpWer
 @inject IJSRuntime _jsWRuntime
 
-@if (Theme != "software.css")
+@if (Theme != "default")
 {
     <link href="_content/Radzen.Blazor/css/@(Theme)" rel="stylesheet" />
 }
@@ -15,9 +15,13 @@
 <RadzenNotification />
 <RadzenTooltip />
 <RadzenContextMenu />
-
+@*
 <RadzenHeader>
-    <ChildContent>
+    
+    <RadzenLabel Style="alignment: center" Text="@(projectName)">
+    </RadzenLabel>
+
+      <ChildContent>
         <div class="row justify-content-start align-items-center">
             <div class="col-5 d-flex align-items-center">
                 <RadzenSidebarToggle Click="@(args => { sidebarExpanded = !sidebarExpanded; bodyExpanded = !bodyExpanded; })">
@@ -27,14 +31,14 @@
             </div>
         </div>
     </ChildContent>
-</RadzenHeader>
+</RadzenHeader>*@
 <div style="width:100%">
     <RadzenBody @ref="@body0" @bind-Expanded="@bodyExpanded">
         <ChildContent>
             <RadzenContentContainer Name="main">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-12 pt-4 pb-5 px-3 px-lg-5">
+                        <div class="light col-12 pt-4 pb-5 px-3 px-lg-5">
                             @Body
                         </div>
                     </div>

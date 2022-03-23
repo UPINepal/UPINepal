@@ -1,22 +1,54 @@
 ﻿@page "/apps"
 @using global::Shared.Models
-
 <PageTitle>Apps Supporting UPI</PageTitle>
+<style>
+  
+    a{
+        color: black;
+        text-decoration: none;
+        background-color: transparent;
+    } 
+    a:hover {
+        color: black !important;
+        text-decoration: none;
+    }
+</style>
+<h1>Apps</h1>
+<ul class="appList_appList__Lqce0 appList_popularList__wSCQd">
+        @foreach (var i in apps)
+        {
+            <a href="https://googl.com">
+                
+                <li class="prettyApp_app__csxfj">
+                    <div>
+                        <div class="prettyApp_imgContainer__ZYSkU">
+                            <picture>
+                                <source srcset="@i.LogoLink" type="image/webp" />
+                                <source srcset="@i.LogoLink" type="image/png" />
+                                <img src="@i.LogoLink" alt="Logo for Zoom" draggable="false" />
+                            </picture>
+                        </div>
+                        <h3 class="prettyApp_imgHeader__FkohJ">@i.Name</h3>
+                        <div class="prettyApp_moreInfo__QdzEa">
+                            <span>
+                                More Info
+                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                
 
-<h1>Apps On UPI</h1>
+            </a>
+           
 
-<RadzenDataGrid Data="@apps" PagerHorizontalAlign="HorizontalAlign.Center" TItem="AppResponse" ColumnWidth="200px">
-    <Columns>
-        <RadzenDataGridColumn TItem="AppResponse" Property="Name" Filterable="false" Title="Name"/>
-        <RadzenDataGridColumn TItem="AppResponse" Title="Logo" Frozen="true" Sortable="false" Width="60px">
-            <Template Context="data">
-                <RadzenImage Path="@data.LogoLink" style="width: 40px; height: 40px; border-radius: 8px;"/>
-            </Template>
-        </RadzenDataGridColumn>
-        <RadzenDataGridColumn TItem="AppResponse" Property="AppStoreLink" Title="App Store" Frozen="true" Width="140px"/>
-        <RadzenDataGridColumn TItem="AppResponse" Property="PlayStoreLink" Title="Play Store" Width="140px"/>
-    </Columns>
-</RadzenDataGrid>
+        }
+    </ul>
+
+
+
 
 @code {
     IEnumerable<AppResponse> apps;
@@ -27,30 +59,12 @@
         {
             new AppResponse()
             {
-                Name = "Khalti",
-                SiteLink = "https://khalti.com/",
-                UpIPageLink = "https://khalti.com/",
-                LogoLink = "https://dao578ztqooau.cloudfront.net/static/2.69.07-web19/images/merchants/thirdparty/classictech.png",
-                PlayStoreLink = "https://play.google.com/store/apps/details?id=com.khalti",
-                AppStoreLink = "https://apps.apple.com/us/app/khalti-digital-wallet-nepal/id1263400741"
-            },
-            new AppResponse()
-            {
-                Name = "Khalti",
-                SiteLink = "https://khalti.com/",
-                UpIPageLink = "https://khalti.com/",
-                LogoLink = "https://dao578ztqooau.cloudfront.net/static/2.69.07-web19/images/merchants/thirdparty/classictech.png",
-                PlayStoreLink = "https://play.google.com/store/apps/details?id=com.khalti",
-                AppStoreLink = "https://apps.apple.com/us/app/khalti-digital-wallet-nepal/id1263400741"
-            },
-            new AppResponse()
-            {
-                Name = "Khalti",
-                SiteLink = "https://khalti.com/",
-                UpIPageLink = "https://khalti.com/",
-                LogoLink = "https://dao578ztqooau.cloudfront.net/static/2.69.07-web19/images/merchants/thirdparty/classictech.png",
-                PlayStoreLink = "https://play.google.com/store/apps/details?id=com.khalti",
-                AppStoreLink = "https://apps.apple.com/us/app/khalti-digital-wallet-nepal/id1263400741"
+                Name = "Global Smart +",
+                SiteLink = "https://globalimebank.com/globalsmart-plus",
+                UpIPageLink = "https://globalimebank.com/globalsmart-plus",
+                LogoLink = "https://scontent-bom1-2.xx.fbcdn.net/v/t39.30808-6/271094352_4684158571661418_3695959819052380578_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=1ASuyLeyF1wAX97Kygl&_nc_ht=scontent-bom1-2.xx&oh=00_AT-0Vj43O9PhqDXLqjngRskYZ5Ivuw7jRkoJBPg5KEVQbA&oe=6240853A",
+                PlayStoreLink = "https://play.google.com/store/apps/details?id=com.swifttechnology.globalsmart&hl=en&gl=US",
+                AppStoreLink = "https://apps.apple.com/us/app/global-smart-plus/id1565283667"
             }
         };
     }
