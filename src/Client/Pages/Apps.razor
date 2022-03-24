@@ -1,49 +1,45 @@
 ﻿@page "/apps"
 @using global::Shared.Models
 <PageTitle>Apps Supporting UPI</PageTitle>
-<style>
-  
-    a{
-        color: black;
-        text-decoration: none;
-        background-color: transparent;
-    } 
-    a:hover {
-        color: black !important;
-        text-decoration: none;
-    }
-</style>
 <h1>Apps</h1>
 <ul class="appList_appList__Lqce0 appList_popularList__wSCQd">
         @foreach (var i in apps)
         {
-            <a href="https://googl.com">
+          
                 
-                <li class="prettyApp_app__csxfj">
+                <li class="prettyApp_app__csxfj" style="cursor: auto;opacity: 1">
                     <div>
                         <div class="prettyApp_imgContainer__ZYSkU">
                             <picture>
-                                <source srcset="@i.LogoLink" type="image/webp" />
-                                <source srcset="@i.LogoLink" type="image/png" />
                                 <img src="@i.LogoLink" alt="Logo for Zoom" draggable="false" />
                             </picture>
                         </div>
                         <h3 class="prettyApp_imgHeader__FkohJ">@i.Name</h3>
-                        <div class="prettyApp_moreInfo__QdzEa">
-                            <span>
-                                More Info
-                                <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <polyline points="9 18 15 12 9 6"></polyline>
-                                </svg>
-                            </span>
+                        
+                        
+                        <div class="row">
+                            
+                            <div class="col-sm-5">
+                                <a href="@i.PlayStoreLink">
+                                <picture>
+                                    <img style="width: 150px; height: 50px" src="https://involveduidevtest-c6v76esbxa-uc.a.run.app/assets/images/download-play-store.png" alt="Logo for Zoom" draggable="false"/>
+                                </picture>
+                                </a>
+                            </div>
+                            
+                            <div class="col-sm-5">
+                                <a href="@i.AppStoreLink">
+                                    <picture>
+                                        <img style="width: 150px; height: 50px" src="https://involveduidevtest-c6v76esbxa-uc.a.run.app/assets/images/download-app-store.png" alt="Logo for Zoom" draggable="false"/>
+                                    </picture>
+                                </a>
+                             
+                            </div>
+
                         </div>
                     </div>
                 </li>
-                
-
-            </a>
-           
-
+          
         }
     </ul>
 
