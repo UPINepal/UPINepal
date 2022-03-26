@@ -1,6 +1,7 @@
 ﻿@page "/banks"
 @using Server.Models
 @using global::Shared.Interfaces
+@using global::Shared
 <PageTitle>Banks Supporting UPI</PageTitle>
 @inject IDataService _dataService;
 
@@ -24,9 +25,7 @@
             <div>
                 <div class="prettyApp_imgContainer__ZYSkU">
                     <picture>
-                        <source srcset="@i.LogoLink" type="image/webp"/>
-                        <source srcset="@i.LogoLink" type="image/png"/>
-                        <img src="@i.LogoLink" alt="Logo for Zoom" draggable="false"/>
+                        <img src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo for Zoom" draggable="false"/>
                     </picture>
                 </div>
                 <h3 class="prettyApp_imgHeader__FkohJ">@i.Name</h3>
