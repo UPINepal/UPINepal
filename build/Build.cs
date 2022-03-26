@@ -97,9 +97,11 @@ class Build : NukeBuild
         {
             if (IsServerBuild && GitHubActions.Instance != null)
             {
-                tag = GitRepository.Branch.ToLower() == "master"
+                Console.WriteLine(GitHubActions.Instance.Ref);
+                var gitHubRef = GitHubActions.Instance.Ref.Split('/').Last();
+                tag = gitHubRef == "main"
                     ? "github-latest"
-                    : $"github-{GitRepository.Branch.Split('/').Last()}-{GitHubActions.Instance.JobId}";
+                    : $"github-{ GitHubActions.Instance.Ref.Split('/').Last()}-{GitHubActions.Instance.JobId}";
             }
             else
             {
