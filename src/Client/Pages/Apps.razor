@@ -1,5 +1,6 @@
 ﻿@page "/apps"
 @using global::Shared.Models
+@using global::Shared
 <PageTitle>Apps Supporting UPI</PageTitle>
 <h1>Apps</h1>
 <ul class="appList_appList__Lqce0 appList_popularList__wSCQd">
@@ -9,31 +10,23 @@
             <div>
                 <div class="prettyApp_imgContainer__ZYSkU">
                     <picture>
-                        <img src="@i.LogoLink" alt="Logo @(i.Name)" draggable="false"/>
+                        <img src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo @(i.Name)" draggable="false"/>
                     </picture>
                 </div>
                 <h3 class="prettyApp_imgHeader__FkohJ">@i.Name</h3>
 
 
                 <div class="row">
-
-                    <div class="col-sm-5">
-                        <a href="@i.PlayStoreLink">
-                            <picture>
-                                <img style="width: 150px; height: 50px" src="/logo/download-play-store.png" alt="Logo Play Store" draggable="false"/>
-                            </picture>
-                        </a>
-                    </div>
-
-                    <div class="col-sm-5">
-                        <a href="@i.AppStoreLink">
-                            <picture>
-                                <img style="width: 150px; height: 50px" src="/logo/download-app-store.png" alt="Logo App Store" draggable="false"/>
-                            </picture>
-                        </a>
-
-                    </div>
-
+                    <a href="@i.PlayStoreLink">
+                        <picture>
+                            <img style="width: 150px; height: 50px" src="@StaticContent.StaticUrl/logo/download-play-store.png" alt="Logo Play Store" draggable="false"/>
+                        </picture>
+                    </a>
+                    <a href="@i.AppStoreLink">
+                        <picture>
+                            <img style="width: 150px; height: 50px" src="@StaticContent.StaticUrl/logo/download-app-store.png" alt="Logo App Store" draggable="false"/>
+                        </picture>
+                    </a>
                 </div>
             </div>
         </li>
@@ -53,7 +46,7 @@
                 Name = "Global Smart +",
                 SiteLink = "https://globalimebank.com/globalsmart-plus",
                 UpIPageLink = "https://globalimebank.com/globalsmart-plus",
-                LogoLink = "/logo/GlobalSmart.webp",
+                LogoLink = "GlobalSmart.webp",
                 PlayStoreLink = "https://play.google.com/store/apps/details?id=com.swifttechnology.globalsmart&hl=en&gl=US",
                 AppStoreLink = "https://apps.apple.com/us/app/global-smart-plus/id1565283667"
             }
