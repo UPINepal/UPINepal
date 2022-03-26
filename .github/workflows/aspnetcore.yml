@@ -1,0 +1,13 @@
+﻿name: ASP.NET Core CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '5.0.101'
+      - name: buld with Nuke
+        run: dotnet run  --project ./build/_build.csproj -GitHubAccessToken ${{ secrets.GithubAccessToken }}
