@@ -6,25 +6,25 @@ using Shared.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IDataService, DataService>();
 builder.Services.AddScoped<HttpClient>(s =>
 {
-    var navigationManager = s.GetRequiredService<NavigationManager>();
+    NavigationManager navigationManager=null;
+    navigationManager = s.GetRequiredService<NavigationManager>();
     return new HttpClient
     {
         BaseAddress = new Uri(navigationManager.BaseUri)
     };
 });
-
-
 builder.Services.AddScoped<ThemeState>();
 builder.Services.AddScoped<IMenuService, MenuService>();
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
+
 
 var app = builder.Build();
 

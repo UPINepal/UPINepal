@@ -1,7 +1,8 @@
 ﻿@page "/banks"
 @using Server.Models
+@using global::Shared.Interfaces
 <PageTitle>Banks Supporting UPI</PageTitle>
-
+@inject IDataService _dataService;
 
 <style>
   
@@ -36,20 +37,11 @@
 
 
 @code {
-    IEnumerable<BankResponse> apps;
+    IEnumerable<BankResponse> apps= new List<BankResponse>();
 
     protected override async Task OnInitializedAsync()
     {
-        apps = new List<BankResponse>()
-        {
-            new BankResponse()
-            {
-                Name = "Global IME Bank",
-                SiteLink = "https://globalimebank.com/",
-                UpIPageLink = "https://www.facebook.com/paymentnepal/posts/678819913535784",
-                LogoLink = "/logo/GlobalIMEBank.png"
-            }
-        };
+        apps=await _dataService.GetBanks();
     }
 
 }

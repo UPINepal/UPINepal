@@ -1,6 +1,8 @@
 ﻿@page "/apps"
 @using global::Shared.Models
 @using global::Shared
+@using global::Shared.Interfaces
+@inject IDataService _dataService
 <PageTitle>Apps Supporting UPI</PageTitle>
 <h1>Apps</h1>
 <ul class="appList_appList__Lqce0 appList_popularList__wSCQd">
@@ -35,22 +37,11 @@
 
 
 @code {
-    IEnumerable<AppResponse> apps;
+    IEnumerable<AppResponse> apps=  new List<AppResponse>();
 
     protected override async Task OnInitializedAsync()
     {
-        apps = new List<AppResponse>()
-        {
-            new AppResponse()
-            {
-                Name = "Global Smart +",
-                SiteLink = "https://globalimebank.com/globalsmart-plus",
-                UpIPageLink = "https://globalimebank.com/globalsmart-plus",
-                LogoLink = "GlobalSmart.webp",
-                PlayStoreLink = "https://play.google.com/store/apps/details?id=com.swifttechnology.globalsmart&hl=en&gl=US",
-                AppStoreLink = "https://apps.apple.com/us/app/global-smart-plus/id1565283667"
-            }
-        };
+        apps= await  _dataService.GetApps();
     }
 
 }
