@@ -25,8 +25,8 @@
 </style>
 <RadzenHeader>
     <div class="center">
-        <h2>Apps and Banks on UPI</h2>
-        <p>(Not associated with NPCI paymentNepal,International or any other financial institution)</p>
+        <h5 style="margin-top: 0; margin-bottom: 0">Apps and Banks on UPI</h5>
+        <small>(Not associated with NPCI, paymentNepal or any financial inst.)</small>
     </div>
 </RadzenHeader>
 
@@ -56,7 +56,11 @@
         </RadzenPanelMenu>
     </ChildContent>
 </RadzenSidebar>
-
+<RadzenFooter>
+    <ChildContent>
+        <RadzenLabel Text="Not associated with NPCI, paymentNepal or any financial institution" Path="https://www.facebook.com/yugal9710" Target="_blank" Style="alignment: right; margin-left:5px;vertical-align:bottom;" />
+    </ChildContent>
+</RadzenFooter>
 @code {
 
     string projectName = "List of UPI Apps & Banks In Nepal";
