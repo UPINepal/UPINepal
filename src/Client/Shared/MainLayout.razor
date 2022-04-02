@@ -15,23 +15,21 @@
 <RadzenNotification />
 <RadzenTooltip />
 <RadzenContextMenu />
-@*
-<RadzenHeader>
-    
-    <RadzenLabel Style="alignment: center" Text="@(projectName)">
-    </RadzenLabel>
+<style>
+    .center {
+        text-align: center;
+    }
 
-      <ChildContent>
-        <div class="row justify-content-start align-items-center">
-            <div class="col-5 d-flex align-items-center">
-                <RadzenSidebarToggle Click="@(args => { sidebarExpanded = !sidebarExpanded; bodyExpanded = !bodyExpanded; })">
-                </RadzenSidebarToggle>
-                <RadzenLabel Text="@(projectName)">
-                </RadzenLabel>
-            </div>
-        </div>
-    </ChildContent>
-</RadzenHeader>*@
+
+
+</style>
+<RadzenHeader>
+    <div class="center">
+        <h2>Apps and Banks on UPI</h2>
+        <p>(Not associated with NPCI paymentNepal,International or any other financial institution)</p>
+    </div>
+</RadzenHeader>
+
 <div style="width:100%">
     <RadzenBody @ref="@body0" @bind-Expanded="@bodyExpanded">
         <ChildContent>

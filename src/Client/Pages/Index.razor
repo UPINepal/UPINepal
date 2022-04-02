@@ -1,10 +1,15 @@
 ﻿@page "/"
 <PageTitle>UPI Nepal</PageTitle>
-<div class="row">
-    <div class="col">
-        <Apps></Apps>
-    </div>
-    <div class="col">
-        <Banks></Banks>
-    </div>
-</div>
+
+
+
+<RadzenTabs TabPosition="TabPosition.Top"  RenderMode="TabRenderMode.Client">
+    <Tabs>
+        <RadzenTabsItem Text="Apps">
+            <Apps></Apps>
+        </RadzenTabsItem>
+        <RadzenTabsItem Text="Banks">
+            <Banks></Banks>
+        </RadzenTabsItem>
+    </Tabs>
+</RadzenTabs>

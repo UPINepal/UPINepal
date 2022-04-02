@@ -2,33 +2,46 @@
 @using Server.Models
 @using global::Shared.Interfaces
 @using global::Shared
+@using global::Shared.Models
+@using Microsoft.AspNetCore.Components
+@using System.Linq
 <PageTitle>Banks Supporting UPI</PageTitle>
 @inject IDataService _dataService;
 
-<style>
-  
-    a{
-        color: black;
-        text-decoration: none;
-        background-color: transparent;
-    } 
-    a:hover {
-        color: black !important;
-        text-decoration: none;
-    }
-</style>
 <h1 style="alignment: center">Banks</h1>
+<EditForm Model="@searchString" OnValidSubmit="@(_ => SubmitSearch())">
+    <div class="row">
+        <div class="col-md-8">
+            <RadzenTextBox @bind-Value="@searchString.Query" Style="width:100%" Placeholder="Search banks..." />
+        </div>
+        <div class="col-md-2">
+            <Radzen.Blazor.RadzenButton ButtonType="ButtonType.Submit" Click="@(_ => SubmitSearch())" Raised="true" Icon="refresh">Search</Radzen.Blazor.RadzenButton>
+        </div>
+    </div>
+</EditForm>
+<br />
 <ul class="appList_appList__Lqce0 appList_popularList__wSCQd">
     @foreach (var i in apps)
     {
-        <li class="prettyApp_app__csxfj">
+        <li class="prettyApp_app__csxfj" style="cursor: auto;opacity: 1">
             <div>
                 <div class="prettyApp_imgContainer__ZYSkU">
                     <picture>
-                        <img src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo for Zoom" draggable="false"/>
+                        <img src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo for @i.Name" draggable="false" />
                     </picture>
                 </div>
                 <h3 class="prettyApp_imgHeader__FkohJ">@i.Name</h3>
+                @if (!string.IsNullOrWhiteSpace(@i.PageLink))
+                {
+                    <a class="prettyApp_moreInfo__QdzEa" href="@i.PageLink">
+                        <span>
+                            More Info
+                            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                }
             </div>
         </li>
     }
@@ -36,11 +49,24 @@
 
 
 @code {
-    IEnumerable<BankResponse> apps= new List<BankResponse>();
-
+    IEnumerable<BankResponse> allList = new List<BankResponse>();
+    IEnumerable<BankResponse> apps = new List<BankResponse>();
+    SearchModel searchString = new SearchModel();
     protected override async Task OnInitializedAsync()
     {
-        apps=await _dataService.GetBanks();
+        allList = await _dataService.GetBanks();
+        apps = allList;
     }
+    void SubmitSearch()
+    {
+        if (!string.IsNullOrWhiteSpace(searchString.Query))
+        {
+            apps = allList.Where(c =>
 
+                c.Name.Contains(searchString.Query, StringComparison.InvariantCultureIgnoreCase)
+                || c.Tags.Contains(searchString.Query, true)
+                );
+        }
+        StateHasChanged();
+    }
 }
