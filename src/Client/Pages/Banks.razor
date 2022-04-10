@@ -7,8 +7,6 @@
 @using System.Linq
 <PageTitle>Banks Supporting UPI</PageTitle>
 @inject IDataService _dataService;
-
-<h1 style="alignment: center">Banks</h1>
 <EditForm Model="@searchString" OnValidSubmit="@(_ => SubmitSearch())">
     <div class="row">
         <div class="col-md-8">

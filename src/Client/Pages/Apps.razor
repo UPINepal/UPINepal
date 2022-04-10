@@ -4,13 +4,10 @@
 @using global::Shared.Interfaces
 @inject IDataService _dataService
 <PageTitle>Apps Supporting UPI</PageTitle>
-<h1>Apps</h1>
-
-
 <EditForm Model="@searchString" OnValidSubmit="@(_ => SubmitSearch())">
     <div class="row">
         <div class="col-md-8">
-            <RadzenTextBox @bind-Value="@searchString.Query" Style="width:100%" Placeholder="Search aps..." />
+            <RadzenTextBox @bind-Value="@searchString.Query" Style="width:100%" Placeholder="Search apps..." />
         </div>
         <div class="col-md-2">
             <Radzen.Blazor.RadzenButton ButtonType="ButtonType.Submit" Click="@(_ => SubmitSearch())" Raised="true" Icon="refresh">Search</Radzen.Blazor.RadzenButton>

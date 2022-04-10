@@ -51,11 +51,16 @@
             @foreach (var category in examples)
             {
                 <RadzenPanelMenuItem @bind-Expanded="@category.Expanded" Text="@category.Name" Path="@category.Path" Icon="@category.Icon">
-                    </RadzenPanelMenuItem>
+                </RadzenPanelMenuItem>
             }
         </RadzenPanelMenu>
     </ChildContent>
 </RadzenSidebar>
+<RadzenFooter>
+    <ChildContent>
+        <RadzenLabel Text="contact@upinepal.com"></RadzenLabel>
+    </ChildContent>
+</RadzenFooter>
 @code {
 
     string projectName = "List of UPI Apps & Banks In Nepal";
