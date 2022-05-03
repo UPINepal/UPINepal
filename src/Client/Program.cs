@@ -1,5 +1,6 @@
 using Client.Implementations;
 using Client.Interfaces;
+using Client.seo;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Radzen;
 using Refit;
@@ -9,7 +10,8 @@ using Shared.Interfaces;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 
-
+builder.Services.AddSingleton<MetadataProvider>();
+builder.Services.AddScoped<MetadataTransferService>();
 builder.Services.AddScoped<ThemeState>();
 builder.Services.AddScoped<IMenuService,MenuService>();
 builder.Services.AddScoped<DialogService>();

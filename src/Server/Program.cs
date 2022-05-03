@@ -1,3 +1,4 @@
+using Client.seo;
 using Microsoft.AspNetCore.Components;
 using Radzen;
 using Server.Implementations;
@@ -24,7 +25,8 @@ builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
-
+builder.Services.AddSingleton<MetadataProvider>();
+builder.Services.AddScoped<MetadataTransferService>();
 
 var app = builder.Build();
 
