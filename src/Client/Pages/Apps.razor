@@ -4,6 +4,10 @@
 @using global::Shared.Interfaces
 @inject IDataService _dataService
 <PageTitle>Apps Supporting UPI</PageTitle>
+@if (ShowHeading)
+{
+    <h1>Apps Supporting UPI</h1>
+}
 <EditForm Model="@searchString" OnValidSubmit="@(_ => SubmitSearch())">
     <div class="row">
         <div class="col-md-8">
@@ -59,7 +63,9 @@
 
 @code {
 
-   
+
+    [Parameter]
+    public bool ShowHeading { get; set; } = true;
     IEnumerable<AppResponse> allList = new List<AppResponse>();
     IEnumerable<AppResponse> apps = new List<AppResponse>();
     SearchModel searchString = new SearchModel();

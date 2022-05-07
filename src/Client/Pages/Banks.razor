@@ -5,8 +5,15 @@
 @using global::Shared.Models
 @using Microsoft.AspNetCore.Components
 @using System.Linq
-<PageTitle>Banks Supporting UPI</PageTitle>
+
 @inject IDataService _dataService;
+
+<PageTitle>Banks Supporting UPI</PageTitle>
+@if (ShowHeading)
+{
+    <h1>Apps Supporting UPI</h1>
+}
+
 <EditForm Model="@searchString" OnValidSubmit="@(_ => SubmitSearch())">
     <div class="row">
         <div class="col-md-8">
@@ -47,6 +54,8 @@
 
 
 @code {
+    [Parameter]
+    public bool ShowHeading { get; set; } = true;
     IEnumerable<BankResponse> allList = new List<BankResponse>();
     IEnumerable<BankResponse> apps = new List<BankResponse>();
     SearchModel searchString = new SearchModel();
