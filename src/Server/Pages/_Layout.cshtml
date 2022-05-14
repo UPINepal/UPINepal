@@ -26,7 +26,7 @@
     <meta property="twitter:image" content="@StaticContent.StaticUrl/logo/Logo.jpg">
 
     <base href="~/" />
-    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+  
     <link href="@StaticContent.StaticUrl/css/site.css" rel="stylesheet" />
     <link href="@StaticContent.StaticUrl/css/one.css" rel="stylesheet" />
     <link href="@StaticContent.StaticUrl/css/two.css" rel="stylesheet" />
@@ -34,8 +34,7 @@
 </head>
 <body>
     @RenderBody()
-
-    <div id="blazor-error-ui">
+<div id="blazor-error-ui">
         <environment include="Staging,Production">
             An error has occurred. This application may no longer respond until reloaded.
         </environment>
@@ -46,6 +45,7 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <script src="_framework/blazor.webassembly.js"></script>
+<script src="_framework/blazor.webassembly.js"></script>
+ <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
 </body>
 </html>
