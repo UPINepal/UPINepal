@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	  <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
 	  <BlazorEnableCompression>true</BlazorEnableCompression>
+	  <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 
   <ItemGroup>
