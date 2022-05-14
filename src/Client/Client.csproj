@@ -7,6 +7,7 @@
 	  <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
 	  <BlazorEnableCompression>true</BlazorEnableCompression>
 	  <PublishTrimmed>true</PublishTrimmed>
+	  <BlazorCacheBootResources>false</BlazorCacheBootResources>
   </PropertyGroup>
 
   <ItemGroup>
