@@ -11,7 +11,7 @@
 <PageTitle>Banks Supporting UPI</PageTitle>
 @if (ShowHeading)
 {
-    <h1>Apps Supporting UPI</h1>
+    <h1>Banks Supporting UPI</h1>
 }
 
 <EditForm Model="@searchString" OnValidSubmit="@(_ => SubmitSearch())">
@@ -30,12 +30,12 @@
     {
         <li class="prettyApp_app__csxfj" style="cursor: auto;opacity: 1">
             <div>
+                <h6 class="prettyApp_imgHeader__FkohJ">@i.Name</h6>
                 <div class="prettyApp_imgContainer__ZYSkU">
                     <picture>
-                        <img src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo for @i.Name" draggable="false" />
+                        <img style="width: 300px" src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo for @i.Name" draggable="false"/>
                     </picture>
                 </div>
-                <h3 class="prettyApp_imgHeader__FkohJ">@i.Name</h3>
                 @if (!string.IsNullOrWhiteSpace(@i.PageLink))
                 {
                     <a class="prettyApp_moreInfo__QdzEa" href="@i.PageLink">
