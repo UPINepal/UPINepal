@@ -13,27 +13,22 @@
 {
     <h1>Banks Supporting UPI</h1>
 }
-
-<EditForm Model="@searchString" OnValidSubmit="@(_ => SubmitSearch())">
-    <div class="row">
-        <div class="col-md-8">
-            <RadzenTextBox @bind-Value="@searchString.Query" Style="width:100%" Placeholder="Search banks..." />
-        </div>
-        <div class="col-md-2">
-            <Radzen.Blazor.RadzenButton ButtonType="ButtonType.Submit" Click="@(_ => SubmitSearch())" Raised="true" Icon="refresh">Search</Radzen.Blazor.RadzenButton>
-        </div>
+<div class="row">
+    <div class="col-md-8">
+        <RadzenTextBox @oninput="@Filter" Style="width:100%" Placeholder="Search banks..." />
     </div>
-</EditForm>
+</div>
+
 <br />
 <ul class="appList_appList__Lqce0 appList_popularList__wSCQd">
-    @foreach (var i in apps)
+    @foreach (var i in banks)
     {
         <li class="prettyApp_app__csxfj" style="cursor: auto;opacity: 1">
             <div>
                 <h6 class="prettyApp_imgHeader__FkohJ">@i.Name</h6>
                 <div class="prettyApp_imgContainer__ZYSkU">
                     <picture>
-                        <img style="width: 300px" src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo for @i.Name" draggable="false"/>
+                        <img style="width: 300px" src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo for @i.Name" draggable="false" />
                     </picture>
                 </div>
                 @if (!string.IsNullOrWhiteSpace(@i.PageLink))
@@ -57,23 +52,27 @@
     [Parameter]
     public bool ShowHeading { get; set; } = true;
     IEnumerable<BankResponse> allList = new List<BankResponse>();
-    IEnumerable<BankResponse> apps = new List<BankResponse>();
-    SearchModel searchString = new SearchModel();
+    IEnumerable<BankResponse> banks = new List<BankResponse>();
     protected override async Task OnInitializedAsync()
     {
         allList = await _dataService.GetBanks();
-        apps = allList;
+        banks = allList;
     }
-    void SubmitSearch()
+    void Filter(ChangeEventArgs args)
     {
-        if (!string.IsNullOrWhiteSpace(searchString.Query))
+        var searchText = args.Value?.ToString();
+        if (!string.IsNullOrWhiteSpace(searchText))
         {
-            apps = allList.Where(c =>
+            banks = allList.Where(c =>
 
-                c.Name.Contains(searchString.Query, StringComparison.InvariantCultureIgnoreCase)
-                || c.Tags.Contains(searchString.Query, true)
+                c.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase)
+                || c.Tags.Contains(searchText, true)
+                || c.Tags.Any(ff => ff.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
                 );
         }
-        StateHasChanged();
+        else
+        {
+            banks = allList;
+        }
     }
 }

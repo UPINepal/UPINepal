@@ -8,16 +8,13 @@
 {
     <h1>Apps Supporting UPI</h1>
 }
-<EditForm Model="@searchString" OnValidSubmit="@(_ => SubmitSearch())">
-    <div class="row">
-        <div class="col-md-8">
-            <RadzenTextBox @bind-Value="@searchString.Query" Style="width:100%" Placeholder="Search apps..." />
-        </div>
-        <div class="col-md-2">
-            <Radzen.Blazor.RadzenButton ButtonType="ButtonType.Submit" Click="@(_ => SubmitSearch())" Raised="true" Icon="refresh">Search</Radzen.Blazor.RadzenButton>
-        </div>
+
+<div class="row">
+    <div class="col-md-8">
+        <RadzenTextBox Style="width:100%" @oninput="@Filter" Placeholder="Search apps..." />
     </div>
-</EditForm>
+</div>
+
 <br />
 
 <ul class="appList_appList__Lqce0 appList_popularList__wSCQd">
@@ -28,7 +25,7 @@
                 <h6 class="prettyApp_imgHeader__FkohJ">@i.Name</h6>
                 <div class="prettyApp_imgContainer__ZYSkU">
                     <picture>
-                        <img src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo @(i.Name)" draggable="false"/>
+                        <img src="@StaticContent.StaticUrl/logo/@i.LogoLink" alt="Logo @(i.Name)" draggable="false" />
                     </picture>
                 </div>
                 @if (!string.IsNullOrWhiteSpace(@i.PageLink))
@@ -46,12 +43,12 @@
                 <div class="row">
                     <a href="@i.PlayStoreLink">
                         <picture>
-                            <img style="width: 150px; height: 50px" src="@StaticContent.StaticUrl/logo/download-play-store.png" alt="Logo Play Store" draggable="false"/>
+                            <img style="width: 150px; height: 50px" src="@StaticContent.StaticUrl/logo/download-play-store.png" alt="Logo Play Store" draggable="false" />
                         </picture>
                     </a>
                     <a href="@i.AppStoreLink">
                         <picture>
-                            <img style="width: 150px; height: 50px" src="@StaticContent.StaticUrl/logo/download-app-store.png" alt="Logo App Store" draggable="false"/>
+                            <img style="width: 150px; height: 50px" src="@StaticContent.StaticUrl/logo/download-app-store.png" alt="Logo App Store" draggable="false" />
                         </picture>
                     </a>
                 </div>
@@ -68,22 +65,28 @@
     public bool ShowHeading { get; set; } = true;
     IEnumerable<AppResponse> allList = new List<AppResponse>();
     IEnumerable<AppResponse> apps = new List<AppResponse>();
-    SearchModel searchString = new SearchModel();
+
     protected override async Task OnInitializedAsync()
     {
         allList = await _dataService.GetApps();
         apps = allList;
     }
-    void SubmitSearch()
+
+    void Filter(ChangeEventArgs args)
     {
-        if (!string.IsNullOrWhiteSpace(searchString.Query))
+        var searchText = args.Value?.ToString();
+        if (!string.IsNullOrWhiteSpace(searchText))
         {
             apps = allList.Where(c =>
 
-                c.Name.Contains(searchString.Query, StringComparison.InvariantCultureIgnoreCase)
-                || c.Tags.Contains(searchString.Query, true)
+                c.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase)
+                || c.Tags.Contains(searchText, true)
+                    || c.Tags.Any(ff => ff.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
                 );
         }
-        StateHasChanged();
+        else
+        {
+            apps = allList;
+        }
     }
 }
