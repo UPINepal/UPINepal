@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:7.0.101-jammy-arm64v8, AS buildimg
+﻿FROM mcr.microsoft.com/dotnet/sdk:7.0.101-jammy-arm64v8 AS buildimg
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443

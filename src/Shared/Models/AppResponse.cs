@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace Shared.Models
+﻿namespace Shared.Models
 {
     public class AppResponse
     {

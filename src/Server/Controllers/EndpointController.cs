@@ -9,15 +9,13 @@ namespace Server.Controllers
     [Route("[controller]")]
     public class EndpointController : ControllerBase
     {
-        private readonly ILogger<EndpointController> _logger;
         private readonly IDataService _dataService;
 
-        public EndpointController(ILogger<EndpointController> logger,
+        public EndpointController(
             IDataService dataService
         )
         {
             _dataService = dataService;
-            _logger = logger;
         }
 
         [HttpGet("apps")]
