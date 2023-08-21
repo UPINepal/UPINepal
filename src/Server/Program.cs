@@ -1,35 +1,22 @@
 using Client.seo;
-using Microsoft.AspNetCore.Components;
-using Radzen;
+using Server.Components;
 using Server.Implementations;
 using Shared;
 using Shared.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
-builder.Services.AddSingleton<IDataService, DataService>();
-builder.Services.AddScoped<HttpClient>(s =>
-{
-    NavigationManager navigationManager=null;
-    navigationManager = s.GetRequiredService<NavigationManager>();
-    return new HttpClient
-    {
-        BaseAddress = new Uri(navigationManager.BaseUri)
-    };
-});
+builder.Services.AddRazorComponents()
+    .AddServerComponents()
+    .AddWebAssemblyComponents();
+builder.Services.AddScoped<IDataService, DataService>();
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<ThemeState>();
-builder.Services.AddScoped<IMenuService, MenuService>();
-builder.Services.AddScoped<DialogService>();
-builder.Services.AddScoped<NotificationService>();
-builder.Services.AddScoped<TooltipService>();
-builder.Services.AddScoped<ContextMenuService>();
 builder.Services.AddSingleton<MetadataProvider>();
 builder.Services.AddScoped<MetadataTransferService>();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
@@ -43,14 +30,27 @@ else
 
 app.UseHttpsRedirection();
 
-app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
-app.UseRouting();
+app.MapGet("/Endpoint/banks",
+async (IDataService dataService,
+            CancellationToken ct) =>
+        {
 
+            var banks = await dataService.GetBanks();
+            return Results.Ok(banks);
+        }).WithName("banks")
+    ;
+app.MapGet("/Endpoint/apps",
+async (IDataService dataService,
+            CancellationToken ct) =>
+{
+    var apps = await dataService.GetApps();
+    return Results.Ok(apps);
+}).WithName("apps");
 
-app.MapRazorPages();
-app.MapControllers();
-app.MapFallbackToPage("/_Host");
+app.MapRazorComponents<App>()
+    .AddServerRenderMode()
+    .AddWebAssemblyRenderMode();
 
 app.Run();

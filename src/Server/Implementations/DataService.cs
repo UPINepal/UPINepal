@@ -7,25 +7,22 @@ namespace Server.Implementations
 {
     public class DataService : IDataService
     {
-        private readonly List<BankResponse> _banks;
-        private readonly List<AppResponse> _apps;
-
-        public DataService()
+        private readonly HttpClient _httpClient;
+        public DataService(HttpClient httpClient)
         {
-            var httpClient = new HttpClient();
-            _apps = httpClient.GetFromJsonAsync<List<AppResponse>>(StaticContent.StaticUrl + "/json/apps.json").Result;
-            _banks = httpClient.GetFromJsonAsync<List<BankResponse>>(StaticContent.StaticUrl + "/json/banks.json")
-                .Result;
+            _httpClient = httpClient;
         }
 
         public async Task<List<BankResponse>> GetBanks()
         {
-            return _banks;
+            var banks = await _httpClient.GetFromJsonAsync<List<BankResponse>>(StaticContent.StaticUrl + "/json/banks.json");
+            return banks;
         }
 
         public async Task<List<AppResponse>> GetApps()
         {
-            return _apps;
+            var apps = await _httpClient.GetFromJsonAsync<List<AppResponse>>(StaticContent.StaticUrl + "/json/apps.json");
+            return apps;
         }
     }
 }
